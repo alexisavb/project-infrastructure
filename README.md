@@ -131,6 +131,3 @@ While Docker Compose is used for local development, the same images and principl
 - Pull requests should be atomic and self-contained
 
 ---
-
-High-level structure:
-
