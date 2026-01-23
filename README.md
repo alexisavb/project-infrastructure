@@ -131,3 +131,64 @@ While Docker Compose is used for local development, the same images and principl
 - Pull requests should be atomic and self-contained
 
 ---
+
+## 🚀 Running the project locally
+
+### Prerequisites
+- Docker Desktop installed and running
+
+Clone the repository and enter the project directory:
+
+```bash
+git clone <repository-url>
+cd project-infrastructure
+```
+
+Ensure Docker Desktop is installed and running:
+
+```bash
+docker info
+```
+
+Create the environment variables file:
+
+```bash
+p .env.example .env
+```
+
+Build and start all containers:
+
+```bash
+docker compose up -d --build
+```
+
+List running containers:
+
+```bash
+docker ps
+```
+
+Access the Java container shell:
+
+```bash
+docker exec -it java-runtime bash
+```
+
+Exit the container shell:
+
+```bash
+exit
+```
+
+Stop all containers:
+
+```bash
+docker compose down
+```
+
+Stop containers and remove volumes:
+
+```bash
+docker compose down -v
+```
+

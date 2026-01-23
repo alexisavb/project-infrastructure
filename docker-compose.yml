@@ -1,0 +1,48 @@
+services:
+
+  postgres:
+    container_name: local-postgres
+    build:
+      context: ./docker/infra/postgres
+    image: project-infrastructure-postgres:16
+    restart: unless-stopped
+
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+    networks:
+      - local-network
+
+
+  java-runtime:
+    container_name: java-runtime
+    build:
+      context: ./docker/runtime/java
+    image: project-infrastructure-java:17
+    tty: true
+    stdin_open: true
+
+    volumes:
+      - ./backend:/workspace
+
+    working_dir: /workspace
+
+    networks:
+      - local-network
+
+
+volumes:
+  postgres_data:
+
+
+networks:
+  local-network:
+    driver: bridge
